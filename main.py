@@ -68,7 +68,7 @@ def convertir_en_nombre(texte:str)->int:
     if not isinstance(texte, str) or not texte.strip():
         raise ValueError("Vous devez entrer une chaine de caractère!")
     try:
-        return CACHE_TEXTE_EN_NOMBRE[texte]
+        return int(CACHE_TEXTE_EN_NOMBRE[texte])
     except KeyError:
         mots = texte.lower().split()
         #Verifie si tout les mots sont dans les dictionnaires
