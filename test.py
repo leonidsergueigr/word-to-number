@@ -1,5 +1,5 @@
 from unittest import TestCase
-from api import convertir_en_nombre, convertir_en_lettre
+from nombre_texte import convertir_en_nombre, convertir_en_lettre
 
 
 class TestWord2Number(TestCase):
