@@ -217,4 +217,5 @@ if __name__ == '__main__':
                 menu()
             if choix == 3:
                 os.close(0)
+                
     menu()
