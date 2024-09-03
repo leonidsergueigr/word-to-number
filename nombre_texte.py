@@ -1,5 +1,7 @@
 """Module qui converti les nombre entier naturel de 0 à 999999999999"""
 import math
+import os
+import subprocess
 from Cache import Cache
 
 DICTIONNAIRE_NOMBRES = {
@@ -61,11 +63,12 @@ def convertir_en_nombre(texte:str)->int:
         ValueError: Si l'argument texte n'est pas une chaine de caractère ou vide
 
     Returns:
-        int: La chaîne de caractère converti en entier ou -1 s'il y a eu une erreur
+        int: La chaîne de caractère converti en entier
     """
     nombre_total = 0
     nombre_partiel = 0
-    if not isinstance(texte, str) or not texte.strip():
+
+    if not isinstance(texte, str) or not texte.strip() or texte.isnumeric():
         raise ValueError("Vous devez entrer une chaine de caractère!")
     try:
         return int(CACHE_TEXTE_EN_NOMBRE[texte])
@@ -91,7 +94,9 @@ def convertir_en_nombre(texte:str)->int:
             return nombre_total
         
         else:
-            return -1
+            raise ValueError("Veuillez entrer une valeur correct")
+        
+
 def decomposer(mot:str)->list[str]:
     """Fonction qui décompose un nombre à trois chiffres.
     exemple: 350 -> [300,50], 247 -> [200, 40, 7]
@@ -124,7 +129,7 @@ def convertir_en_lettre(n:int)->str:
     Returns:
         str: Le nombre converti
     """
-    if not isinstance(n,int):
+    if not isinstance(n,int) and not str(n).isnumeric():
         raise ValueError("Vous devez entrez un entier seulement")
     elif len(str(n))>12:
         raise ValueError("Votre nombre est trop grand")
@@ -164,8 +169,6 @@ def convertir_en_lettre(n:int)->str:
                                 lettre.append(DICTIONNAIRE_NOMBRES_INVERSE[int(nombre[0])])
                             lettre.append("cent")
                         else:
-                            #if len(nombre)==1:
-                            #    lettre.append("-")
                             lettre.append(DICTIONNAIRE_NOMBRES_INVERSE[int(nombre)])
             if i==2:
                 lettre.append("mille")     
@@ -179,9 +182,39 @@ def convertir_en_lettre(n:int)->str:
         CACHE_NOMBRE_EN_TEXTE.ajouter(n,texte)
         return texte
 
-
 if __name__ == '__main__':
-    print(convertir_en_lettre(242))
+    def menu():
+        subprocess.run("clear")
+        print("Bienvenu dans Word To Number")
+        print("Selectionner une option:")
+        print("""
+        1. Changer texte en chiffre.\n
+        2. Changer chiffre en texte.\n
+        3. Quitter.
+              """)
 
-
-
+        choix = int(input("Votre choix: "))
+        if isinstance(choix, int):
+            if choix == 1:
+                subprocess.run("clear")
+                print("Texte en chiffre\n")
+                n = input("Entrez le texte: ")
+                try:
+                    print(f"{n} en nombre égale à {convertir_en_nombre(n)}")
+                except ValueError as e:
+                    print(e)
+                input("Appuyez sur entrer pour continuer...")
+                menu()
+            if choix == 2:
+                subprocess.run("clear")
+                print("Chiffre en texte\n")
+                n = input("Entrez le chiffre: ")
+                try:
+                    print(f"{n} en nombre égale à {convertir_en_lettre(n)}")
+                except ValueError as e:
+                    print(e)
+                input("Appuyez sur entrer pour continuer...")
+                menu()
+            if choix == 3:
+                os.close(0)
+    menu()
