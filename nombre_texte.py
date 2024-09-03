@@ -181,7 +181,7 @@ def convertir_en_lettre(n:int)->str:
 
 
 if __name__ == '__main__':
-    print(convertir_en_lettre(240))
+    print(convertir_en_lettre(242))
 
 
 
