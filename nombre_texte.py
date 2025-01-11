@@ -48,6 +48,8 @@ DICTIONNAIRE_MOTS_SPECIAUX = {
     "million":1000000,
     "milliard":1000000000
 }
+
+
 DICTIONNAIRE_NOMBRES_INVERSE = {valeur:cle for cle, valeur in DICTIONNAIRE_NOMBRES.items()}
 CACHE_NOMBRE_EN_TEXTE = Cache(1000,"number-to-texte")
 CACHE_TEXTE_EN_NOMBRE = {valeur : cle for cle, valeur in CACHE_NOMBRE_EN_TEXTE.items()}
