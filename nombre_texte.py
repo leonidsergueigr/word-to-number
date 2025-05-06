@@ -186,7 +186,7 @@ def convertir_en_lettre(n:int)->str:
 
 if __name__ == '__main__':
     def menu():
-        subprocess.run("clear")
+        # subprocess.run("clear")
         print("Bienvenu dans Word To Number")
         print("Selectionner une option:")
         print("""
@@ -198,7 +198,7 @@ if __name__ == '__main__':
         choix = int(input("Votre choix: "))
         if isinstance(choix, int):
             if choix == 1:
-                subprocess.run("clear")
+                # subprocess.run("clear")
                 print("Texte en chiffre\n")
                 n = input("Entrez le texte: ")
                 try:
@@ -208,7 +208,7 @@ if __name__ == '__main__':
                 input("Appuyez sur entrer pour continuer...")
                 menu()
             if choix == 2:
-                subprocess.run("clear")
+                # subprocess.run("clear")
                 print("Chiffre en texte\n")
                 n = input("Entrez le chiffre: ")
                 try:
